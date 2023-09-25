@@ -3,6 +3,7 @@ package com.example.springmessenger.model;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,6 +17,6 @@ public class Member {
     @ManyToMany
     private Set<Group> groups;
 
-    @ManyToMany()
-    private Set<Message> messagesViews;
+    @OneToMany(mappedBy = "message")
+    private Set<MemberMessageView> messagesViews = new HashSet<MemberMessageView>();
 }

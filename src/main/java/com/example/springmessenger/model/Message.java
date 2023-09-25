@@ -5,6 +5,7 @@ package com.example.springmessenger.model;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,8 +30,8 @@ public class Message {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToMany()
-    private Set<Member> membersViews;
+    @OneToMany(mappedBy = "member")
+    private Set<MemberMessageView> membersViews = new HashSet<MemberMessageView>();
 
     public Long getId() {
         return id;
