@@ -1,7 +1,9 @@
 package com.example.springmessenger.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +18,8 @@ public class Group {
 
     private String name;
 
-    private Timestamp createdAt;
+    @CreatedDate
+    private Date createdAt;
 
     @OneToMany
     private Set<Message> messages;
@@ -40,11 +43,11 @@ public class Group {
         this.name = name;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 

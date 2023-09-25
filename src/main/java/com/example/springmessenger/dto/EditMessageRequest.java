@@ -6,6 +6,7 @@ import com.example.springmessenger.model.MemberMessageView;
 import com.example.springmessenger.model.Message;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class EditMessageRequest implements Serializable {
     private Message parent;
     private Member sender;
     private Set<MemberMessageView> messagesViews = new HashSet<MemberMessageView>();
-    private Timestamp createdAt;
+    private Date createdAt;
 
     public EditMessageRequest() {
     }
@@ -49,7 +50,7 @@ public class EditMessageRequest implements Serializable {
         return messagesViews;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 

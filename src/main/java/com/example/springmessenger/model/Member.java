@@ -45,12 +45,4 @@ public class Member {
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
-
-    public Set<MemberMessageView> getMembersViews() {
-        return membersViews;
-    }
-
-    public void setMembersViews(Set<MemberMessageView> membersViews) {
-        this.membersViews = membersViews;
-    }
 }

@@ -11,7 +11,7 @@ public class EditMemberRequest {
 
     private Set<Group> groups;
 
-    private Set<MemberMessageView> membersViews = new HashSet<MemberMessageView>();;
+    private final Set<MemberMessageView> membersViews = new HashSet<MemberMessageView>();;
 
     public EditMemberRequest() {
     }
@@ -28,19 +28,11 @@ public class EditMemberRequest {
         return groups;
     }
 
-    public Set<MemberMessageView> getMembersViews() {
-        return membersViews;
-    }
-
     public void setCustomName(String customName) {
         this.customName = customName;
     }
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
-    }
-
-    public void setMembersViews(Set<MemberMessageView> membersViews) {
-        this.membersViews = membersViews;
     }
 }
