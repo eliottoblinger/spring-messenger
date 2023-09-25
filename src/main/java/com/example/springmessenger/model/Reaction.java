@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table(name="reaction")
 public class Reaction {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String content;

@@ -12,6 +12,8 @@ import java.util.Set;
 @Table(name="messages")
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String content;

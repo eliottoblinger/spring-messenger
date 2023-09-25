@@ -1,7 +1,6 @@
 package com.example.springmessenger.dto;
 
 import com.example.springmessenger.model.Group;
-import com.example.springmessenger.model.Member;
 import com.example.springmessenger.model.MemberMessageView;
 
 import java.util.HashSet;
@@ -17,7 +16,7 @@ public class EditMemberRequest {
     public EditMemberRequest() {
     }
 
-    public EditMemberRequest(String name) {
+    public EditMemberRequest(String customName) {
         this.customName = customName;
     }
 

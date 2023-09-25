@@ -1,8 +1,6 @@
 package com.example.springmessenger.service;
 
-import com.example.springmessenger.model.Group;
 import com.example.springmessenger.model.Member;
-import com.example.springmessenger.repository.GroupRepository;
 import com.example.springmessenger.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,8 @@
 package com.example.springmessenger.controller;
 
 import com.example.springmessenger.dto.EditMemberRequest;
-import com.example.springmessenger.dto.EditMessageRequest;
 import com.example.springmessenger.model.Member;
-import com.example.springmessenger.model.Message;
 import com.example.springmessenger.service.MemberService;
-import com.example.springmessenger.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +25,6 @@ public class MemberController {
         Member member = new Member();
 
         member.setCustomName(request.getCustomName());
-        member.setGroups(request.getGroups());
-        member.setMembersViews(request.getMembersViews());
 
         memberService.save(member);
 

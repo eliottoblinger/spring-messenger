@@ -1,7 +1,6 @@
 package com.example.springmessenger.controller;
 
 import com.example.springmessenger.dto.EditReactionRequest;
-import com.example.springmessenger.model.Message;
 import com.example.springmessenger.model.Reaction;
 import com.example.springmessenger.service.MessageService;
 import com.example.springmessenger.service.ReactionService;

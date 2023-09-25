@@ -10,6 +10,8 @@ import java.util.Set;
 @Table(name="message_group")
 public class Group {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String name;
