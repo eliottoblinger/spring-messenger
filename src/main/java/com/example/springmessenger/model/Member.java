@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="messager_member")
+@Table(name="message_member")
 public class Member {
     @Id
     private Long id;
@@ -17,6 +17,38 @@ public class Member {
     @ManyToMany
     private Set<Group> groups;
 
-    @OneToMany(mappedBy = "message")
-    private Set<MemberMessageView> messagesViews = new HashSet<MemberMessageView>();
+    @OneToMany(mappedBy = "member")
+    private Set<MemberMessageView> membersViews = new HashSet<MemberMessageView>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCustomName() {
+        return customName;
+    }
+
+    public void setCustomName(String customName) {
+        this.customName = customName;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
+    }
+
+    public Set<MemberMessageView> getMembersViews() {
+        return membersViews;
+    }
+
+    public void setMembersViews(Set<MemberMessageView> membersViews) {
+        this.membersViews = membersViews;
+    }
 }

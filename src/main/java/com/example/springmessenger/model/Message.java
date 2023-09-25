@@ -28,10 +28,10 @@ public class Message {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private Member sender;
 
-    @OneToMany(mappedBy = "member")
-    private Set<MemberMessageView> membersViews = new HashSet<MemberMessageView>();
+    @OneToMany(mappedBy = "message")
+    private Set<MemberMessageView> messagesViews = new HashSet<MemberMessageView>();
 
     public Long getId() {
         return id;
@@ -71,6 +71,22 @@ public class Message {
 
     public void setParent(Message parent) {
         this.parent = parent;
+    }
+
+    public Member getSender() {
+        return sender;
+    }
+
+    public void setSender(Member sender) {
+        this.sender = sender;
+    }
+
+    public Set<MemberMessageView> getMessagesViews() {
+        return messagesViews;
+    }
+
+    public void setMessagesViews(Set<MemberMessageView> messagesViews) {
+        this.messagesViews = messagesViews;
     }
 }
 
