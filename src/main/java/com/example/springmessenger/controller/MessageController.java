@@ -19,11 +19,16 @@ public class MessageController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Message> createmessage(@RequestBody EditMessageRequest request){
+    public ResponseEntity<Message> createMessage(@RequestBody EditMessageRequest request) {
         Message message = new Message();
 
         message.setContent(request.getContent());
 
-        return ResponseEntity.create(new URI("/api/messages/" + message.getId())).body(message);
+        try {
+            return ResponseEntity.created(new URI("/api/messages/" + message.getId())).body(message);
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
