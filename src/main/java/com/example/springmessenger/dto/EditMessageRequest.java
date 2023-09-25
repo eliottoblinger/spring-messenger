@@ -23,8 +23,10 @@ public class EditMessageRequest implements Serializable {
     public EditMessageRequest() {
     }
 
-    public EditMessageRequest(String content) {
+    public EditMessageRequest(String content, Group group, Member sender) {
         this.content = content;
+        this.group = group;
+        this.sender = sender;
     }
 
     public String getContent() {
