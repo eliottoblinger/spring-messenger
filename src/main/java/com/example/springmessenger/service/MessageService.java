@@ -1,5 +1,7 @@
 package com.example.springmessenger.service;
 
+import com.example.springmessenger.model.Message;
+import com.example.springmessenger.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
