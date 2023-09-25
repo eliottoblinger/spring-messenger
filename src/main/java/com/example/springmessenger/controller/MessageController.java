@@ -29,6 +29,8 @@ public class MessageController {
         message.setGroup(request.getGroup());
         message.setSender(request.getSender());
 
+        messageService.save(message);
+
         try {
             return ResponseEntity.created(new URI("/api/messages/" + message.getId())).body(message);
         } catch (Exception e) {
