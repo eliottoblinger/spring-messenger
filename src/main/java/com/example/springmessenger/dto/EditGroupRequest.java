@@ -4,7 +4,6 @@ import com.example.springmessenger.model.Member;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Set;
 
 public class EditGroupRequest implements Serializable {
