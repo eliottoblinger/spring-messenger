@@ -9,4 +9,4 @@ swagger:
   title: Titre de votre API
   description: Description de votre API
   version: 1.0
-  base-package: com.exemple
+  base-package: com.example
