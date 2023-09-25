@@ -1,14 +1,17 @@
 package com.example.springmessenger.dto;
 
+import com.example.springmessenger.model.Member;
+import com.example.springmessenger.model.Message;
+
 import java.io.Serializable;
 
 public class EditReactionRequest implements Serializable {
 
     private String content;
 
-    private Long member;
+    private Member member;
 
-    private Long message;
+    private Message message;
 
     public String getContent() {
         return content;
@@ -20,18 +23,18 @@ public class EditReactionRequest implements Serializable {
 
 
 
-    public Long getMember() {
+    public Member getMember() {
         return member;
     }
 
-    public void setMember(Long member) {
+    public void setMember(Member member) {
         this.member = member;
     }
-    public Long getMessage() {
+    public Message getMessage() {
         return message;
     }
 
-    public void setMessage(Long message) {
+    public void setMessage(Message message) {
         this.message = message;
     }
 

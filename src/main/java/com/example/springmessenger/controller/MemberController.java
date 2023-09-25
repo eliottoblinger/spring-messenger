@@ -21,7 +21,7 @@ public class MemberController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Member> createMessage(@RequestBody EditMemberRequest request) {
+    public ResponseEntity<Member> createMember(@RequestBody EditMemberRequest request) {
         Member member = new Member();
 
         member.setCustomName(request.getCustomName());
