@@ -5,6 +5,7 @@ package com.example.springmessenger.model;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name="messages")
@@ -23,6 +24,13 @@ public class Message {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_id")
     private Message parent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToMany()
+    private Set<Member> membersViews;
 
     public Long getId() {
         return id;

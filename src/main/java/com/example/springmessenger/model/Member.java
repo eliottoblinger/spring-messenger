@@ -6,15 +6,16 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
-@Table(name="group")
-public class Group {
+@Table(name="member")
+public class Member {
     @Id
     private Long id;
 
-    private String name;
-
-    private Timestamp createdAt;
+    private String customName;
 
     @ManyToMany
-    private Set<Member> members;
+    private Set<Group> groups;
+
+    @ManyToMany()
+    private Set<Message> messagesViews;
 }
