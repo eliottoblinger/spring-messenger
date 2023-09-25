@@ -14,7 +14,7 @@ public class Reaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Message member;
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_id")
@@ -36,11 +36,11 @@ public class Reaction {
         this.content = content;
     }
 
-    public Message getMember() {
+    public Member getMember() {
         return member;
     }
 
-    public void setMember(Message member) {
+    public void setMember(Member member) {
         this.member = member;
     }
 

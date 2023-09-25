@@ -27,8 +27,8 @@ public class ReactionController {
         Reaction reaction = new Reaction();
 
         reaction.setContent(request.getContent());
-//        reaction.setMember(request.getMember());
-        reaction.setMessage(messageService.getById(request.getMessage()));
+        reaction.setMember(request.getMember());
+        reaction.setMessage(request.getMessage());
 
         try {
             reactionService.save(reaction);
