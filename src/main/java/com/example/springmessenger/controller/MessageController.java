@@ -26,7 +26,6 @@ public class MessageController {
 
         try {
             return ResponseEntity.created(new URI("/api/messages/" + message.getId())).body(message);
-
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
