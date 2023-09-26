@@ -42,7 +42,6 @@ public class Message implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    @JsonIgnore
     private Member sender;
 
     @OneToMany(mappedBy = "message")
