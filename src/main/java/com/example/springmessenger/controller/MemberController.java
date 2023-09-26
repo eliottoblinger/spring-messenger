@@ -1,6 +1,7 @@
 package com.example.springmessenger.controller;
 
 import com.example.springmessenger.dto.EditMemberRequest;
+import com.example.springmessenger.model.Group;
 import com.example.springmessenger.model.Member;
 import com.example.springmessenger.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/members")
@@ -18,6 +20,11 @@ public class MemberController {
     @GetMapping("/{id}")
     public ResponseEntity<Member> getById(@PathVariable("id") Long id){
         return ResponseEntity.ok(memberService.getById(id));
+    }
+
+    @GetMapping("/{id}/groups")
+    public ResponseEntity<Set<Group>> getGroupsByMemberId(@PathVariable("id") Long id){
+        return ResponseEntity.ok(memberService.getById(id).getGroups());
     }
 
     @PostMapping("/")
