@@ -18,11 +18,17 @@ import java.net.URI;
 @RequestMapping("/messages-views")
 public class MemberMessageViewController {
     @Autowired
-    private MemberMessageViewService messageMemberViewService;
+    private MemberMessageViewService memberMessageViewService;
 
     @GetMapping("/{id}")
     public ResponseEntity<MemberMessageView> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(messageMemberViewService.getById(id));
+        MemberMessageView member = memberMessageViewService.getById(id);
+
+        if(member == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(member);
     }
 
     @PostMapping("/")
@@ -33,7 +39,7 @@ public class MemberMessageViewController {
         memberMessageView.setMessage(request.getMessage());
         memberMessageView.setViewedAt(request.getViewedAt());
 
-        messageMemberViewService.save(memberMessageView);
+        memberMessageViewService.save(memberMessageView);
 
         try {
             return ResponseEntity.created(new URI("/api/messages-views/" + memberMessageView.getId())).body(memberMessageView);

@@ -1,6 +1,7 @@
 package com.example.springmessenger.controller;
 
 import com.example.springmessenger.dto.EditReactionRequest;
+import com.example.springmessenger.model.Message;
 import com.example.springmessenger.model.Reaction;
 import com.example.springmessenger.service.MessageService;
 import com.example.springmessenger.service.ReactionService;
@@ -19,7 +20,13 @@ public class ReactionController {
     private MessageService messageService;
     @GetMapping("/{id}")
     public ResponseEntity<Reaction> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(reactionService.getById(id));
+        Reaction reaction = reactionService.getById(id);
+
+        if(reaction == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(reaction);
     }
 
     @PostMapping("/")
@@ -41,7 +48,13 @@ public class ReactionController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReaction(@PathVariable("id") Long id){
         Reaction reaction = reactionService.getById(id);
+
+        if(reaction == null){
+            return ResponseEntity.notFound().build();
+        }
+
         reactionService.delete(reaction);
+
         return ResponseEntity.noContent().build();
     }
 }

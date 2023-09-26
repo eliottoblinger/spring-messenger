@@ -28,7 +28,13 @@ public class GroupController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Group> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(groupService.getById(id));
+        Group group = groupService.getById(id);
+
+        if(group == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(group);
     }
 
     @PostMapping("/")
@@ -50,24 +56,47 @@ public class GroupController {
 
     @GetMapping("/{id}/messages")
     public ResponseEntity<Set<Message>> getMessages(@PathVariable("id") Long id){
-        return ResponseEntity.ok(groupService.getById(id).getMessages());
+        Group group = groupService.getById(id);
+
+        if(group == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(group.getMessages());
     }
 
     @GetMapping("/{id}/members")
     public ResponseEntity<Set<Member>> getMember(@PathVariable("id") Long id){
-        return ResponseEntity.ok(groupService.getById(id).getMembers());
+        Group group = groupService.getById(id);
+
+        if(group == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(group.getMembers());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGroup(@PathVariable("id") Long id){
         Group group = groupService.getById(id);
+
+        if(group == null){
+            return ResponseEntity.notFound().build();
+        }
+
         groupService.delete(group);
+
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Group> updateGroup(@PathVariable("id") Long id, @RequestBody EditGroupRequest request){
         Group group = groupService.getById(id);
+
+        if(group == null){
+            return ResponseEntity.notFound().build();
+        }
+
         if (request.getName() != null) {
             group.setName(request.getName());
         }

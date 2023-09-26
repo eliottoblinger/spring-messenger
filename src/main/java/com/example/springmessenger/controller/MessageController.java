@@ -1,6 +1,7 @@
 package com.example.springmessenger.controller;
 
 import com.example.springmessenger.dto.EditMessageRequest;
+import com.example.springmessenger.model.MemberMessageView;
 import com.example.springmessenger.model.Message;
 import com.example.springmessenger.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,13 @@ public class MessageController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Message> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(messageService.getById(id));
+        Message message = messageService.getById(id);
+
+        if(message == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(message);
     }
 
     @PostMapping("/")
@@ -41,7 +48,13 @@ public class MessageController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMessage(@PathVariable("id") Long id){
         Message message = messageService.getById(id);
+
+        if(message == null){
+            return ResponseEntity.notFound().build();
+        }
+
         messageService.delete(message);
+
         return ResponseEntity.noContent().build();
     }
 }

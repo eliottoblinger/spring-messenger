@@ -1,6 +1,7 @@
 package com.example.springmessenger.controller;
 
 import com.example.springmessenger.dto.EditMemberRequest;
+import com.example.springmessenger.model.Group;
 import com.example.springmessenger.model.Member;
 import com.example.springmessenger.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,13 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Member> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(memberService.getById(id));
+        Member member = memberService.getById(id);
+
+        if(member == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(member);
     }
 
     @PostMapping("/")
@@ -38,13 +45,23 @@ public class MemberController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMember(@PathVariable("id") Long id){
         Member member = memberService.getById(id);
+
+        if(member == null){
+            return ResponseEntity.notFound().build();
+        }
+
         memberService.delete(member);
+
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Member> updateMember(@PathVariable("id") Long id, @RequestBody EditMemberRequest request) {
         Member member = memberService.getById(id);
+
+        if(member == null){
+            return ResponseEntity.notFound().build();
+        }
 
         member.setCustomName(request.getCustomName());
 
