@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -43,6 +44,7 @@ public class Message implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @JsonIgnore
     private Member sender;
 
     @OneToMany(mappedBy = "message")
@@ -55,6 +57,13 @@ public class Message implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Optional<Long> getSenderId() {
+        if (sender == null) {
+            return Optional.empty();
+        }
+        return Optional.of(sender.getId());
     }
 
     public String getContent() {
