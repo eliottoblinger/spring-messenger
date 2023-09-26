@@ -59,18 +59,18 @@ public class Message implements Serializable {
         this.id = id;
     }
 
-    public Optional<Long> getSenderId() {
+    public Long getSenderId() {
         if (sender == null) {
-            return Optional.empty();
+            return null;
         }
-        return Optional.of(sender.getId());
+        return sender.getId();
     }
 
-    public Optional<String> getSenderName() {
+    public String getSenderName() {
         if (sender == null) {
-            return Optional.empty();
+            return null;
         }
-        return Optional.of(sender.getCustomName());
+        return sender.getCustomName();
     }
 
     public String getContent() {
