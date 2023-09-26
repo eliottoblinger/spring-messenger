@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Table(name = "MemberMessageView")
 public class MemberMessageView {
     @EmbeddedId
-    private MemberMessageViewPK id;
+    private MemberMessageViewPK id = new MemberMessageViewPK();
 
     private Date viewedAt;
 
