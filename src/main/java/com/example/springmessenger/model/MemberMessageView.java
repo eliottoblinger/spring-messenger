@@ -2,12 +2,13 @@ package com.example.springmessenger.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "MemberMessageView")
-public class MemberMessageView {
+@Table(name = "member_message_view")
+public class MemberMessageView implements Serializable {
     @EmbeddedId
     private MemberMessageViewPK id = new MemberMessageViewPK();
 

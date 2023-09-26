@@ -3,10 +3,11 @@ package com.example.springmessenger.dto;
 import com.example.springmessenger.model.Member;
 import com.example.springmessenger.model.Message;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
-public class EditMemberMessageViewRequest {
+public class EditMemberMessageViewRequest implements Serializable {
     private String name;
 
     private Member member;

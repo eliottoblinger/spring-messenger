@@ -2,17 +2,20 @@
 
 package com.example.springmessenger.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="messages")
-public class Message {
+@Table(name="message")
+public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,17 +28,25 @@ public class Message {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", nullable = false)
+    @JsonIgnore
     private Group group;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_id")
+    @JsonIgnore
     private Message parent;
+
+    @OneToMany
+    @JsonIgnore
+    private Set<Message> childrens;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @JsonIgnore
     private Member sender;
 
     @OneToMany(mappedBy = "message")
+    @JsonIgnore
     private Set<MemberMessageView> views = new HashSet<MemberMessageView>();
 
     public Long getId() {

@@ -3,10 +3,11 @@ package com.example.springmessenger.dto;
 import com.example.springmessenger.model.Group;
 import com.example.springmessenger.model.MemberMessageView;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EditMemberRequest {
+public class EditMemberRequest implements Serializable {
     private String customName;
 
     private Set<Group> groups;
