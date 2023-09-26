@@ -34,4 +34,22 @@ public class MemberController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMember(@PathVariable("id") Long id){
+        Member member = memberService.getById(id);
+        memberService.delete(member);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Member> updateMember(@PathVariable("id") Long id, @RequestBody EditMemberRequest request) {
+        Member member = memberService.getById(id);
+
+        member.setCustomName(request.getCustomName());
+
+        memberService.save(member);
+
+        return ResponseEntity.ok(member);
+    }
 }

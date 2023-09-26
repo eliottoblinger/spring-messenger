@@ -17,4 +17,8 @@ public class ReactionService {
     public Reaction getById(Long id){
         return reactionRepository.findById(id).orElse(null);
     }
+
+    public void delete(Reaction reaction) {
+        reactionRepository.delete(reaction);
+    }
 }
