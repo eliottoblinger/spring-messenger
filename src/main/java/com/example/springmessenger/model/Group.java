@@ -25,6 +25,7 @@ public class Group implements Serializable {
     private Set<Message> messages;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Member> members;
 
     public Long getId() {
