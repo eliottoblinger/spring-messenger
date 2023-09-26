@@ -66,6 +66,13 @@ public class Message implements Serializable {
         return Optional.of(sender.getId());
     }
 
+    public Optional<String> getSenderName() {
+        if (sender == null) {
+            return Optional.empty();
+        }
+        return Optional.of(sender.getCustomName());
+    }
+
     public String getContent() {
         return content;
     }
