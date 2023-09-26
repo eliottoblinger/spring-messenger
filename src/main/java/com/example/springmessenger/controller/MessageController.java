@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("/messages")
@@ -17,7 +18,11 @@ public class MessageController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Message> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(messageService.getById(id));
+        Message message = messageService.getById(id);
+        if (message == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(message);
     }
 
     @PostMapping("/")
@@ -28,6 +33,7 @@ public class MessageController {
         message.setParent(request.getParent());
         message.setGroup(request.getGroup());
         message.setSender(request.getSender());
+        message.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
         messageService.save(message);
 

@@ -21,7 +21,7 @@ public class Group implements Serializable {
     @CreatedDate
     private Date createdAt;
 
-    @OneToMany(mappedBy="group")
+    @OneToMany(mappedBy="group", fetch = FetchType.EAGER)
     private Set<Message> messages;
 
     @ManyToMany(fetch = FetchType.EAGER)

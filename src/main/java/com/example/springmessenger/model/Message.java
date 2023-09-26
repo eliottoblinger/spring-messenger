@@ -24,7 +24,8 @@ public class Message implements Serializable {
     private String content;
 
     @CreatedDate
-    private Date createdAt;
+    private Timestamp createdAt;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", nullable = false)
@@ -64,11 +65,11 @@ public class Message implements Serializable {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
