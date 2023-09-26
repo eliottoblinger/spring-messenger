@@ -7,7 +7,6 @@ import com.example.springmessenger.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -35,5 +34,13 @@ public class MemberService {
             }
         }
         memberRepository.delete(member);
+    }
+
+    public Set<Group> getGroupsByMemberId(Long id) {
+        Member member = memberRepository.findById(id).orElse(null);
+        if (member == null) {
+            return null;
+        }
+        return member.getGroups();
     }
 }

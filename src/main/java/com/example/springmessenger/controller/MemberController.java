@@ -24,7 +24,11 @@ public class MemberController {
 
     @GetMapping("/{id}/groups")
     public ResponseEntity<Set<Group>> getGroupsByMemberId(@PathVariable("id") Long id){
-        return ResponseEntity.ok(memberService.getById(id).getGroups());
+        Set<Group> groups = memberService.getGroupsByMemberId(id);
+        if (groups == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(groups);
     }
 
     @PostMapping("/")
