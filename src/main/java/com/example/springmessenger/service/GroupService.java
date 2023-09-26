@@ -5,6 +5,8 @@ import com.example.springmessenger.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GroupService {
     @Autowired
@@ -16,5 +18,9 @@ public class GroupService {
 
     public Group getById(Long id){
         return groupRepository.findById(id).orElse(null);
+    }
+
+    public List<Group> findAll(){
+        return groupRepository.findAll();
     }
 }

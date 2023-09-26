@@ -20,6 +20,11 @@ public class GroupController {
     @Autowired
     private GroupService groupService;
 
+    @GetMapping("/")
+    public ResponseEntity<List<Group>> getAll(){
+        return ResponseEntity.ok(groupService.findAll());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Group> getById(@PathVariable("id") Long id){
         return ResponseEntity.ok(groupService.getById(id));
