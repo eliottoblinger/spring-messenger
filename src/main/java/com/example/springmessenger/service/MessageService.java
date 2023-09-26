@@ -17,4 +17,8 @@ public class MessageService {
     public Message getById(Long id){
         return messageRepository.findById(id).orElse(null);
     }
+
+    public void delete(Message message) {
+        messageRepository.delete(message);
+    }
 }

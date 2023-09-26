@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -31,6 +32,7 @@ public class GroupController {
 
         group.setName(request.getName());
         group.setMembers(request.getMembers());
+        group.setCreatedAt(new Date(System.currentTimeMillis()));
 
         groupService.save(group);
 
@@ -49,5 +51,25 @@ public class GroupController {
     @GetMapping("/{id}/members")
     public ResponseEntity<Set<Member>> getMember(@PathVariable("id") Long id){
         return ResponseEntity.ok(groupService.getById(id).getMembers());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGroup(@PathVariable("id") Long id){
+        Group group = groupService.getById(id);
+        groupService.delete(group);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Group> updateGroup(@PathVariable("id") Long id, @RequestBody EditGroupRequest request){
+        Group group = groupService.getById(id);
+        if (request.getName() != null) {
+            group.setName(request.getName());
+        }
+        if (request.getMembers() != null) {
+            group.setMembers(request.getMembers());
+        }
+        groupService.save(group);
+        return ResponseEntity.ok(group);
     }
 }

@@ -37,4 +37,11 @@ public class ReactionController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReaction(@PathVariable("id") Long id){
+        Reaction reaction = reactionService.getById(id);
+        reactionService.delete(reaction);
+        return ResponseEntity.noContent().build();
+    }
 }
