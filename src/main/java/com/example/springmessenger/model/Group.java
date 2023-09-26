@@ -1,16 +1,16 @@
 package com.example.springmessenger.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="message_group")
-public class Group {
+public class Group implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,10 +21,10 @@ public class Group {
     @CreatedDate
     private Date createdAt;
 
-    @OneToMany
+    @OneToMany(mappedBy="group")
     private Set<Message> messages;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Member> members;
 
     public Long getId() {

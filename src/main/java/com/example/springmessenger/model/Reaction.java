@@ -2,9 +2,11 @@ package com.example.springmessenger.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name="reaction")
-public class Reaction {
+public class Reaction implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
