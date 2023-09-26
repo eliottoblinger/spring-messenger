@@ -3,7 +3,7 @@ package com.example.springmessenger.dto;
 import com.example.springmessenger.model.Member;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Set;
 
 public class EditGroupRequest implements Serializable {
@@ -11,7 +11,7 @@ public class EditGroupRequest implements Serializable {
 
     private Set<Member> members;
 
-    private Timestamp createdAt;
+    private Date createdAt;
 
     public EditGroupRequest() {
     }
@@ -29,7 +29,7 @@ public class EditGroupRequest implements Serializable {
         return members;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 

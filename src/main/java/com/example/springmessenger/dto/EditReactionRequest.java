@@ -1,32 +1,17 @@
-package com.example.springmessenger.model;
+package com.example.springmessenger.dto;
 
-import jakarta.persistence.*;
+import com.example.springmessenger.model.Member;
+import com.example.springmessenger.model.Message;
 
-@Entity
-@Table(name="reaction")
-public class Reaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+import java.io.Serializable;
+
+public class EditReactionRequest implements Serializable {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "message_id")
     private Message message;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getContent() {
         return content;
@@ -36,6 +21,8 @@ public class Reaction {
         this.content = content;
     }
 
+
+
     public Member getMember() {
         return member;
     }
@@ -43,7 +30,6 @@ public class Reaction {
     public void setMember(Member member) {
         this.member = member;
     }
-
     public Message getMessage() {
         return message;
     }
@@ -51,4 +37,5 @@ public class Reaction {
     public void setMessage(Message message) {
         this.message = message;
     }
+
 }

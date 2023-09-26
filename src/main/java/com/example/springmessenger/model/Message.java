@@ -3,7 +3,9 @@
 package com.example.springmessenger.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,11 +14,14 @@ import java.util.Set;
 @Table(name="messages")
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String content;
 
-    private Timestamp createdAt;
+    @CreatedDate
+    private Date createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id", nullable = false)
@@ -31,7 +36,7 @@ public class Message {
     private Member sender;
 
     @OneToMany(mappedBy = "message")
-    private Set<MemberMessageView> messagesViews = new HashSet<MemberMessageView>();
+    private Set<MemberMessageView> views = new HashSet<MemberMessageView>();
 
     public Long getId() {
         return id;
@@ -49,11 +54,11 @@ public class Message {
         this.content = content;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -81,12 +86,12 @@ public class Message {
         this.sender = sender;
     }
 
-    public Set<MemberMessageView> getMessagesViews() {
-        return messagesViews;
+    public Set<MemberMessageView> getViews() {
+        return views;
     }
 
-    public void setMessagesViews(Set<MemberMessageView> messagesViews) {
-        this.messagesViews = messagesViews;
+    public void setViews(Set<MemberMessageView> views) {
+        this.views = views;
     }
 }
 

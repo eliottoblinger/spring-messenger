@@ -2,6 +2,7 @@ package com.example.springmessenger.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -10,7 +11,7 @@ public class MemberMessageView {
     @EmbeddedId
     private MemberMessageViewPK id;
 
-    private Timestamp viewedAt;
+    private Date viewedAt;
 
     @ManyToOne
     @MapsId("memberId")
@@ -30,11 +31,11 @@ public class MemberMessageView {
         this.id = id;
     }
 
-    public Timestamp getViewedAt() {
+    public Date getViewedAt() {
         return viewedAt;
     }
 
-    public void setViewedAt(Timestamp viewedAt) {
+    public void setViewedAt(Date viewedAt) {
         this.viewedAt = viewedAt;
     }
 

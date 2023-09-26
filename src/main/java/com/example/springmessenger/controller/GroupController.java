@@ -32,6 +32,8 @@ public class GroupController {
         group.setName(request.getName());
         group.setMembers(request.getMembers());
 
+        groupService.save(group);
+
         try {
             return ResponseEntity.created(new URI("/api/groups/" + group.getId())).body(group);
         } catch (Exception e) {

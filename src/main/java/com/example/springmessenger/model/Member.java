@@ -10,6 +10,8 @@ import java.util.Set;
 @Table(name="message_member")
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String customName;
@@ -42,13 +44,5 @@ public class Member {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
-    }
-
-    public Set<MemberMessageView> getMembersViews() {
-        return membersViews;
-    }
-
-    public void setMembersViews(Set<MemberMessageView> membersViews) {
-        this.membersViews = membersViews;
     }
 }
