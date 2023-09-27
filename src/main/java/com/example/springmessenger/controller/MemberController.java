@@ -57,7 +57,9 @@ public class MemberController {
     public ResponseEntity<Member> updateMember(@PathVariable("id") Long id, @RequestBody EditMemberRequest request) {
         Member member = memberService.getById(id);
 
-        member.setCustomName(request.getCustomName());
+        if (request.getCustomName() != null) {
+            member.setCustomName(request.getCustomName());
+        }
         if (request.getGroups() != null) {
             member.setGroups(request.getGroups());
         }
