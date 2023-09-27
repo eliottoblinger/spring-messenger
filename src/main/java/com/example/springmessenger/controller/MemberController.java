@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/members")
@@ -25,6 +26,15 @@ public class MemberController {
         }
 
         return ResponseEntity.ok(member);
+    }
+
+    @GetMapping("/{id}/groups")
+    public ResponseEntity<Set<Group>> getGroupsByMemberId(@PathVariable("id") Long id){
+        Set<Group> groups = memberService.getGroupsByMemberId(id);
+        if (groups == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(groups);
     }
 
     @PostMapping("/")

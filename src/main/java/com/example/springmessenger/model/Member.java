@@ -3,6 +3,8 @@ package com.example.springmessenger.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Fetch;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -19,8 +21,7 @@ public class Member implements Serializable {
 
     private String customName;
 
-    @ManyToMany
-    @JsonIgnore
+    @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
     private Set<Group> groups;
 
     @OneToMany

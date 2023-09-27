@@ -7,8 +7,9 @@ import com.example.springmessenger.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MemberService {
@@ -35,5 +36,17 @@ public class MemberService {
             }
         }
         memberRepository.delete(member);
+    }
+
+    public Set<Group> getGroupsByMemberId(Long id) {
+        Member member = memberRepository.findById(id).orElse(null);
+        if (member == null) {
+            return null;
+        }
+        Set<Group> groups = member.getGroups();
+        if (groups.isEmpty()) {
+            return null;
+        }
+        return groups.stream().sorted((g1, g2) -> g2.getId().compareTo(g1.getId())).collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }
