@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -16,6 +17,13 @@ import java.util.Set;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @GetMapping("/")
+    public ResponseEntity<List<Member>> getAll(){
+        List<Member> members = memberService.getAll();
+
+        return ResponseEntity.ok(members);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Member> getById(@PathVariable("id") Long id){

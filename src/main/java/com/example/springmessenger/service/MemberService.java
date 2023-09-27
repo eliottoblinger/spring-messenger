@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,10 @@ public class MemberService {
 
     public Member getById(Long id){
         return memberRepository.findById(id).orElse(null);
+    }
+
+    public List<Member> getAll(){
+        return memberRepository.findAll();
     }
 
     public void delete(Member member) {
