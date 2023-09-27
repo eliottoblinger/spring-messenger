@@ -81,7 +81,12 @@ public class MemberController {
             return ResponseEntity.notFound().build();
         }
 
-        member.setCustomName(request.getCustomName());
+        if (request.getCustomName() != null) {
+            member.setCustomName(request.getCustomName());
+        }
+        if (request.getGroups() != null) {
+            member.setGroups(request.getGroups());
+        }
 
         memberService.save(member);
 
