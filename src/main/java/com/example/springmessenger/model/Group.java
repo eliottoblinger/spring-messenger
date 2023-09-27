@@ -21,10 +21,12 @@ public class Group implements Serializable {
     @CreatedDate
     private Date createdAt;
 
-    @OneToMany(mappedBy="group")
+    @OneToMany(mappedBy="group", fetch = FetchType.EAGER)
+    @OrderBy("createdAt DESC")
     private Set<Message> messages;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Member> members;
 
     public Long getId() {
