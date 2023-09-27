@@ -58,6 +58,9 @@ public class MemberController {
         Member member = memberService.getById(id);
 
         member.setCustomName(request.getCustomName());
+        if (request.getGroups() != null) {
+            member.setGroups(request.getGroups());
+        }
 
         memberService.save(member);
 
